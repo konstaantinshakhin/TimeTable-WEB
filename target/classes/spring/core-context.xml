@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+
+    <import resource="DataSource.xml"/>
+    <import resource="HibernateSessionFactory.xml"/>
+
+    <context:component-scan base-package="ru.shakhin" />
+    <context:annotation-config/>
+
+
+    <bean id="dictionaryDAO" class="ru.shakhin.dao.DictionaryDAO">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="trainDAO" class="ru.shakhin.dao.TrainDAO">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="stationDAO" class="ru.shakhin.dao.StationDAO">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="timetableDAO" class="ru.shakhin.dao.TimeTableDAO">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="directionDAO" class="ru.shakhin.dao.DirectionDAO">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="timetableservice" class="ru.shakhin.service.TimeTableService"/>
+
+</beans>
